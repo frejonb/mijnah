@@ -7,9 +7,9 @@ CART_SERVICE_URL = 'https://www.ah.nl/service/rest/shoppinglists/0/items'
 
 
 class Cart:
-    def __init__(self, ah_token=None, ah_token_presumed=None):
+    def __init__(self, ah_token=None):
         self._session = requests.Session()
-        if (not ah_token) or (not ah_token_presumed):
+        if not ah_token:
             raise Exception('Please fill in auth tokens')
         self._session.headers.update({
             'content-type': 'application/json',
@@ -17,9 +17,7 @@ class Cart:
                           'AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/73.0.3683.103 Safari/537.36',
             'cache-control': 'no-cache',
-            'cookie': (
-                'ah_token=' + ah_token + ';'
-                + 'ah_token_presumed=' + ah_token_presumed)
+            'cookie': 'ah_token=' + ah_token
         })
         resp = requests.get(MEMBER_URL, headers=self._session.headers)
         resp_json = resp.json()
