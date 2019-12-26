@@ -5,48 +5,48 @@ Interact with mijn Albert Heijn V2 API
 ## Cart
 AH uses a recaptcha token to authenticate, so it's easier to pass cookie tokens: `ah_token`, `ah_token_presumed`.
 
-Authentication:
-```python
-import mijnah
-ah = mijnah.Cart(ah_token="my-ah-token", ah_token_presumed="my-ah-token-presumed")
-```
+- Authentication:
+  ```python
+  import mijnah
+  ah = mijnah.Cart(ah_token="my-ah-token", ah_token_presumed="my-ah-token-presumed")
+  ```
 
-List cart:
-```python
-ah.list_cart()
-```
+- List cart:
+  ```python
+  ah.list_cart()
+  ```
 
-Add item to cart:
-```python
-ah.add_to_cart(product_id=1234, amount=2)
-```
-The id can be found in the product url. For example the id in `https://www.ah.nl/producten/product/wi471282/chatelain-notre-dame-medoc` is `471282`.
+- Add item to cart:
+  ```python
+  ah.add_to_cart(product_id=1234, amount=2)
+  ```
+  The id can be found in the product url. For example the id in `https://www.ah.nl/producten/product/wi471282/chatelain-notre-dame-medoc` is `471282`.
 
-Update cart:
-```python
-ah.update_cart(product_id=1234, amount=0)
-```
+- Update cart:
+  ```python
+  ah.update_cart(product_id=1234, amount=0)
+  ```
 
-Empty cart:
-```python
-ah.empty_cart()
-```
+- Empty cart:
+  ```python
+  ah.empty_cart()
+  ```
 
 ## Product
-Initialize:
-```python
-import mijnah
-p = mijnah.Product(product_id=1234)
-```
-Object properties:
-```python
-p.id
-p.name
-p.category
-p.description
-p.brand
-p.price
-```
+- Initialize:
+  ```python
+  import mijnah
+  p = mijnah.Product(product_id=1234)
+  ```
+- Object properties:
+  ```python
+  p.id
+  p.name
+  p.category
+  p.description
+  p.brand
+  p.price
+  ```
 
 # Example
 Getting cart totals
