@@ -1,6 +1,11 @@
 # mijnah
 Interact with mijn Albert Heijn V2 API
 
+# Installation
+```
+pip install mijnah
+```
+
 # Usage
 ## Cart
 AH uses a recaptcha token to authenticate, so it's easier to pass cookie tokens: `ah_token`, `ah_token_presumed`.
