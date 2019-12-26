@@ -8,7 +8,9 @@ setup(
     version=version,
     description='mijn albert heijn library',
     long_description=readme,
-    author='F. Rejon-Barrera',
+    long_description_content_type = 'text/markdown',
+    author='F. G. Rejon Barrera',
+    author_email='f.g.rejonbarrera@gmail.com',
     url='https://github.com/frejonb/mijn-albert-heijn',
     packages=find_packages(exclude=('tests', 'hooks')),
     install_requires=[
