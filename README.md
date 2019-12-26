@@ -8,12 +8,12 @@ pip install mijnah
 
 # Usage
 ## Cart
-AH uses a recaptcha token to authenticate, so it's easier to pass cookie tokens: `ah_token`, `ah_token_presumed`.
+AH uses a recaptcha token to authenticate, so it's easier to pass a `ah_token` (found in a cookie after authenticating).
 
 - Authentication:
   ```python
   import mijnah
-  ah = mijnah.Cart(ah_token="my-ah-token", ah_token_presumed="my-ah-token-presumed")
+  ah = mijnah.Cart(ah_token="my-ah-token")
   ```
 
 - List cart:
@@ -58,8 +58,7 @@ Getting cart totals
 ```python
 import mijnah
 import json
-ah = mijnah.Cart(ah_token='ah_token',
-                 ah_token_presumed='ah_token_presumed')
+ah = mijnah.Cart(ah_token='ah_token')
 ah.empty_cart()
 # add some items
 ah.add_to_cart(product_id=168153, amount=2)
