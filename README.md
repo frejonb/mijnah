@@ -1,4 +1,4 @@
-# mijn-albert-heijn
+# mijnah
 Interact with mijn Albert Heijn V2 API
 
 # Usage
