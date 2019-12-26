@@ -104,5 +104,5 @@ print('total price:', sum(
   }
 ]
 total items: 8
-total price: 7.3
+total price: 15.4
 ```
