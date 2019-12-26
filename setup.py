@@ -12,9 +12,16 @@ setup(
     author='F. G. Rejon Barrera',
     author_email='f.g.rejonbarrera@gmail.com',
     url='https://github.com/frejonb/mijn-albert-heijn',
-    packages=find_packages(exclude=('tests', 'hooks')),
+    packages=find_packages('.', exclude=('tests', 'hooks')),
     install_requires=[
         'requests==2.22.0'
     ],
     keywords='albert heijn',
+    data_files=[
+        ('', [
+            '.VERSION',
+            'LICENSE',
+            'README.md',
+        ]),
+    ]
 )
