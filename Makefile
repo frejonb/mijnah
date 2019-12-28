@@ -9,4 +9,4 @@ test:
 	pytest tests/
 
 lint:
-	flake8
+	flake8 mijnah tests
