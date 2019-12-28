@@ -7,17 +7,26 @@ CART_SERVICE_URL = 'https://www.ah.nl/service/rest/shoppinglists/0/items'
 
 
 class Cart:
-    def __init__(self, ah_token=None):
+    def __init__(self, ah_token=None, ah_token_presumed=None):
         self._session = requests.Session()
-        if not ah_token:
+        if (not ah_token) and (not ah_token_presumed):
             raise Exception('Please fill in auth tokens')
+        tokens = {
+            'ah_token': ah_token,
+            'ah_token_presumed': ah_token_presumed
+        }
+        cookie = ';'.join([
+            '{}={}'.format(k, v)
+            for k, v in tokens.items()
+            if v is not None])
+
         self._session.headers.update({
             'content-type': 'application/json',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                           'AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/73.0.3683.103 Safari/537.36',
             'cache-control': 'no-cache',
-            'cookie': 'ah_token=' + ah_token
+            'cookie': cookie
         })
         resp = requests.get(MEMBER_URL, headers=self._session.headers)
         resp_json = resp.json()
@@ -38,9 +47,9 @@ class Cart:
 
     def add_to_cart(self, product_id, amount=1):
         product = {
-            "items": [{
-                "id": product_id,
-                "quantity": amount
+            'items': [{
+                'id': product_id,
+                'quantity': amount
             }]
         }
         resp = requests.post(CART_URL+'/add',
@@ -54,9 +63,9 @@ class Cart:
 
     def update_cart(self, product_id, amount):
         payload = {
-            "items": [{
-                "id": product_id,
-                "quantity": amount
+            'items': [{
+                'id': product_id,
+                'quantity': amount
             }]
         }
         resp = requests.post(CART_URL+'/update',
