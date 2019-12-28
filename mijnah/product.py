@@ -5,8 +5,8 @@ PRODUCT_URL = 'https://www.ah.nl/zoeken/api/products/product?webshopId='
 
 class Product:
     def __init__(self, product_id=None):
-        if not id:
-            raise Exception("Product id is empty")
+        if not product_id:
+            raise Exception('Product id is empty')
         resp = requests.get(PRODUCT_URL+product_id)
         if resp.status_code != 200:
             raise Exception('Error while getting product: '+repr(resp))
@@ -38,4 +38,4 @@ class Product:
         return self._product['title']
 
     def __repr__(self):
-        return repr(self.name)
+        return self.name
