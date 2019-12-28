@@ -1,0 +1,39 @@
+name: Build and publish new version
+
+on:
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.0.0
+      - name: Build Docker image
+        run: |
+          docker build . --file Dockerfile --tag mijnah:${GITHUB_REF##*/}
+      - name: Run tests
+        run: |
+          docker run mijnah:${GITHUB_REF##*/} bash -ic "make test"
+      - name: Run linter
+        run: |
+          docker run mijnah:${GITHUB_REF##*/} bash -ic "make lint"
+  deploy:
+    needs: build
+    runs-on: ubuntu-18.04
+    container: python:3.6.7-stretch
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.0.0
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
+      - name: Build and publish
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          python setup.py sdist bdist_wheel
+          twine upload dist/*
