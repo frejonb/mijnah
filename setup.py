@@ -14,7 +14,7 @@ setup(
     url='https://github.com/frejonb/mijn-albert-heijn',
     packages=find_packages('.', exclude=('tests', 'hooks')),
     install_requires=[
-        'requests==2.22.0'
+        'requests==2.31.0'
     ],
     keywords='albert heijn',
     data_files=[
