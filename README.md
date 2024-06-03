@@ -1,3 +1,6 @@
+> Note from 2024. AH has changed their API so this module doesn't work anymore. If you find a workaround feel free to open a PR.
+>
+> 
 # mijnah
 Interact with mijn Albert Heijn V2 API
 
